@@ -1,7 +1,7 @@
+
 https://github.com/CybroOdoo/CybroAddons.git -b 12.0, oca-cybroaddons
 https://github.com/dhongu/deltatech.git -b 12.0, oca-deltatech
-https://github.com/SythilTech/Odoo -b 12.0, helpdesk-web
-https://github.com/oca/server-ux -b 12.0, server-ux
+https://github.com/SythilTech/Odoo -b 12.0, helpdesk-w https://github.com/oca/server-ux
 https://github.com/OCA/server-tools -b 12.0, ocaserver-tools
 https://github.com/OCA/helpdesk -b 12.0, oca-helpdesk
 https://github.com/OCA/website -b 12.0, oca-website

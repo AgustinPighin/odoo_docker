@@ -1,3 +1,4 @@
+https://github.com/OmniaGit/odooplm.git -b 12.0, ingadhoc-plm
 https://github.com/ingadhoc/aeroo_reports -b 12.0, ingadhoc-aeroo_reports
 https://github.com/ingadhoc/odoo-support -b 12.0, ingadhoc-odoo-support
 https://github.com/ingadhoc/odoo-argentina -b 12.0, ingadhoc-odoo-argentina
