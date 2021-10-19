@@ -1,5 +1,5 @@
-FROM local/docker-odoo:12.0
-MAINTAINER Juan Jose Scarafia <jjs@adhoc.com.ar>
+FROM agustinpighin/docker-odoo:12.0
+MAINTAINER Agustin Pighin <agustinpighin@Gmail.com>
 
 USER root
 

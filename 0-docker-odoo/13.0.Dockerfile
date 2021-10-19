@@ -175,10 +175,10 @@ RUN pip install --user --no-cache-dir $SOURCES/odoo
 #   Odoo Enterprise
 #
 
-FROM odoo AS enterprise
-ARG GITHUB_USER
-ARG GITHUB_TOKEN
-ENV GITHUB_USER="$GITHUB_USER"
-ENV GITHUB_TOKEN="$GITHUB_TOKEN"
-COPY odoo-e.yml $RESOURCES/
-RUN autoaggregate --config "$RESOURCES/odoo-e.yml" --install --output $SOURCES
+#FROM odoo AS enterprise
+#ARG GITHUB_USER
+#ARG GITHUB_TOKEN
+#ENV GITHUB_USER="$GITHUB_USER"
+#ENV GITHUB_TOKEN="$GITHUB_TOKEN"
+#COPY odoo-e.yml $RESOURCES/
+#RUN autoaggregate --config "$RESOURCES/odoo-e.yml" --install --output $SOURCES

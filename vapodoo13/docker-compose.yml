@@ -1,0 +1,65 @@
+version: '2.1'
+services:
+    db:
+        image: postgres:12
+        environment:
+            - POSTGRES_USER=odoo
+            - POSTGRES_PASSWORD=odoo
+            - POSTGRES_DB=postgres
+            - PGDATA=/var/lib/postgresql/data/pgdata
+        volumes:
+            - pg_data:/var/lib/postgresql/data/pgdata
+        ports:
+            - "5432:5432"
+        #network_mode: "bridge"
+    odoo:
+        # user: root
+        # build:
+        #     context: ./data
+        #     dockerfile: Dockerfile
+        image: $ODOO_IMAGE:$ODOO_MINOR
+        #external_links:
+        #    - aeroo:aeroo
+        # si usamos network_mode entonces el depends_on no funciona, necesitamos link
+        # depends_on:
+        #     # - proxy
+        #     - db
+        links:
+            - db:db
+        volumes:
+            - ./data/custom:/home/odoo/custom
+            - ./data/backups:/home/odoo/data/backups
+            #- default:/home/odoo/src
+            - odoo_data:/home/odoo/data
+        ports:
+            - "8069:8069"
+            - "8072:8072"    
+        #labels:
+            #- traefik.enable=false
+            #- traefik.frontend.port=8069
+            #- traefik.frontend.rule=HostRegexp:$DOMAIN,{subdomain:[a-z0-9-_]+}.$DOMAIN
+            #- traefik.frontend.priority=$TRAEFIK_FRONTEND_PRIORITY
+            # - traefik.longpolling.port=8072
+            # - traefik.longpolling.frontend.rule=HostRegexp:$DOMAIN,{subdomain:[a-z0-9-_]+}.$DOMAIN;PathPrefix:/longpolling/
+            #- traefik.backend.loadbalancer.stickiness=true
+            #- traefik.backend.loadbalancer.method=drr
+            # traefik.frontend.redirect.regex: $strTraefikRedirectRegex
+            # traefik.frontend.redirect.replacement: $strTraefikRedirectReplacement
+        environment:
+            CUSTOM_CONFIG: |-
+                [options]
+            CUSTOM_REQUIREMTNS: |-
+                # custom pip librearies
+            CUSTOM_ENTRYPOINT: |-
+                #!/bin/bash
+                # pip install --user --no-cache-dir -e /home/odoo/custom/odoo
+                # pip install --user --no-cache-dir pyopenssl
+        env_file:
+            - .env
+        #network_mode: "bridge"
+        # para, por ejemplo, odoo-saas. para que el container resuelva tmb .loc en esta ip
+        #dns: 172.17.0.1
+volumes:
+    pg_data:
+    odoo_data:
+#    default:
